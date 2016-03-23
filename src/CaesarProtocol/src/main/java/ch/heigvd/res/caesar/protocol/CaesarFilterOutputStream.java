@@ -1,13 +1,12 @@
 package ch.heigvd.res.caesar.protocol;
 
-import java.io.FilterOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CaesarFilterOutputStream extends FilterOutputStream {
+public class CaesarFilterOutputStream extends DataOutputStream {
 
   private static final Logger LOG = Logger.getLogger(CaesarFilterOutputStream.class.getName());
 
@@ -21,14 +20,14 @@ public class CaesarFilterOutputStream extends FilterOutputStream {
 
     // generate and write the random delta, between 1 and 25
     int delta = 1 + (int)(Math.random() * ((25 - 1) + 1));
-    super.write(ByteBuffer.allocate(4).putInt(delta).array()); // int to byte[]
+    super.writeInt(delta);
 
     // write string length
-    super.write(ByteBuffer.allocate(4).putInt(str.length()).array()); // int to byte[]
+    super.writeInt(str.length());
 
     // transform and write each characters
     str = Caesar.cipher(str, delta);
-    super.write(str.getBytes());
+    super.writeBytes(str);
 
     LOG.log(Level.INFO, "Output crypted string, delta=" + delta + ": " + str);
   }
