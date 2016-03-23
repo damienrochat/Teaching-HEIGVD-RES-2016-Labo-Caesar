@@ -42,7 +42,7 @@ public class ServantWorker implements Runnable {
 
             // get streams from/to client
             CaesarFilterInputStream fromClient = new CaesarFilterInputStream(client.getInputStream());
-            OutputStream toClient = client.getOutputStream();
+            CaesarFilterOutputStream toClient = new CaesarFilterOutputStream(client.getOutputStream());
 
             while(true) {
                 // wait for a message
@@ -54,7 +54,7 @@ public class ServantWorker implements Runnable {
                     break;
 
                 // echo the message
-                //toClient.write(message);
+                toClient.write(message);
             }
 
             // end, close socket

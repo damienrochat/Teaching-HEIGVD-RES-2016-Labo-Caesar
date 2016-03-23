@@ -36,13 +36,13 @@ public class CaesarClient {
 
       // get streams from/to server
       CaesarFilterInputStream fromServer = new CaesarFilterInputStream(server.getInputStream());
-      OutputStream toServer = server.getOutputStream();
+      CaesarFilterOutputStream toServer = new CaesarFilterOutputStream(server.getOutputStream());
 
       while(true) {
         // wait a message and send it
         System.out.print("Message (keep empty to quit): ");
         String message = cin.nextLine();
-        //toServer.write(message);
+        toServer.write(message);
 
         // quit with empty message
         if(message.isEmpty())
