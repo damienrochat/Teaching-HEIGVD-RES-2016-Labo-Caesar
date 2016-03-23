@@ -1,6 +1,6 @@
 package ch.heigvd.res.caesar.client;
 
-import ch.heigvd.res.caesar.protocol.Protocol;
+import ch.heigvd.res.caesar.protocol.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +35,7 @@ public class CaesarClient {
       Socket server = new Socket("localhost", Protocol.PORT);
 
       // get streams from/to server
-      InputStream fromServer = server.getInputStream();
+      CaesarFilterInputStream fromServer = new CaesarFilterInputStream(server.getInputStream());
       OutputStream toServer = server.getOutputStream();
 
       while(true) {
@@ -49,7 +49,9 @@ public class CaesarClient {
           break;
 
         // wait for the response
-        //LOG.info("Server response: " + fromServer.read());
+        String response = new String();
+        fromServer.read(response);
+        LOG.info("Server response: " + response);
       }
 
       server.close();

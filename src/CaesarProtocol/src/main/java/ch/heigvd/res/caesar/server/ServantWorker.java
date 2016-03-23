@@ -6,6 +6,8 @@
 
 package ch.heigvd.res.caesar.server;
 
+import ch.heigvd.res.caesar.protocol.*;
+
 import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,21 +41,20 @@ public class ServantWorker implements Runnable {
             LOG.info("Client info: " + client);
 
             // get streams from/to client
-            InputStream fromClient = client.getInputStream();
+            CaesarFilterInputStream fromClient = new CaesarFilterInputStream(client.getInputStream());
             OutputStream toClient = client.getOutputStream();
 
             while(true) {
                 // wait for a message
-                //String message = fromClient.read();
+                String message = new String();
+                fromClient.read(message);
 
                 // quit on empty message
-                //if(message.isEmpty())
-                //    break;
+                if(message.isEmpty())
+                    break;
 
                 // echo the message
                 //toClient.write(message);
-
-                break; // a enlever
             }
 
             // end, close socket

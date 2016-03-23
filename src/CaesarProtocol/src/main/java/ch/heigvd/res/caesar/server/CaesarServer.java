@@ -1,7 +1,7 @@
 package ch.heigvd.res.caesar.server;
 
 import ch.heigvd.res.caesar.client.*;
-import ch.heigvd.res.caesar.protocol.Protocol;
+import ch.heigvd.res.caesar.protocol.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
