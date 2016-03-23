@@ -12,7 +12,7 @@ public class Caesar {
                 c = ((c - 'a' + delta) % 26) + 'a';
             else if ('A' <= c && c <= 'Z')
                 c = ((c - 'A' + delta) % 26) + 'A';
-            result = result + c;
+            result = result + (char) c;
         }
         return result;
     }
