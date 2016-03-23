@@ -1,7 +1,9 @@
 package ch.heigvd.res.caesar.protocol;
 
 import ch.heigvd.res.caesar.server.CaesarServer;
+import sun.misc.IOUtils;
 
+import java.io.DataInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * Created by chlablak on 23.03.2016.
  */
-public class CaesarFilterInputStream extends FilterInputStream {
+public class CaesarFilterInputStream extends DataInputStream {
 
     private static final Logger LOG = Logger.getLogger(CaesarServer.class.getName());
 
@@ -34,20 +36,14 @@ public class CaesarFilterInputStream extends FilterInputStream {
      * @throws IOException
      */
     public String readCipher() throws IOException {
-        // read delta
-        byte[] b = new byte[4];
-        super.read(b);
-        int delta = ByteBuffer.wrap(b).getInt();
-
-        // read message length
-        super.read(b);
-        int length = ByteBuffer.wrap(b).getInt();
-
+        // read delta and length
+        int delta = readInt();
+        int length = readInt();
         LOG.info("New message, delta=" + delta + ", length=" + length);
 
         // read the message
-        b = new byte[length];
-        super.read(b);
+        byte[] b = new byte[length];
+        super.readFully(b);
         return Caesar.cipher(new String(b), -delta);
     }
 }
