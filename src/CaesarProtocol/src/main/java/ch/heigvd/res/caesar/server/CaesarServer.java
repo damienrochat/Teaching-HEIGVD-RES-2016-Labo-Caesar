@@ -1,6 +1,10 @@
+/**
+ * @file CaesarServer.java
+ * @author Patrick Champion, Damien Rochat
+ */
+
 package ch.heigvd.res.caesar.server;
 
-import ch.heigvd.res.caesar.client.*;
 import ch.heigvd.res.caesar.protocol.*;
 
 import java.io.IOException;
@@ -9,10 +13,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Olivier Liechti (olivier.liechti@heig-vd.ch)
- */
 public class CaesarServer {
 
   private static final Logger LOG = Logger.getLogger(CaesarServer.class.getName());

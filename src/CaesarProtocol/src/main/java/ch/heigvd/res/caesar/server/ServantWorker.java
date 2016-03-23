@@ -1,6 +1,5 @@
 /**
  * @file ServantWorker.java
- * @brief Manage the conversation with a single client
  * @author Patrick Champion, Damien Rochat
  */
 
@@ -8,10 +7,7 @@ package ch.heigvd.res.caesar.server;
 
 import ch.heigvd.res.caesar.protocol.*;
 
-import java.io.IOError;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,19 +1,18 @@
+/**
+ * @file CaesarClient.java
+ * @author Patrick Champion, Damien Rochat
+ */
+
 package ch.heigvd.res.caesar.client;
 
 import ch.heigvd.res.caesar.protocol.*;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Olivier Liechti (olivier.liechti@heig-vd.ch)
- */
 public class CaesarClient {
 
   private static final Logger LOG = Logger.getLogger(CaesarClient.class.getName());

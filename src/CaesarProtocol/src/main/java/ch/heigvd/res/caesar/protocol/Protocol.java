@@ -6,6 +6,6 @@ package ch.heigvd.res.caesar.protocol;
  */
 public class Protocol {
   
-  public static final int PORT = 4242;
+  public static final int PORT = 4243;
 
 }

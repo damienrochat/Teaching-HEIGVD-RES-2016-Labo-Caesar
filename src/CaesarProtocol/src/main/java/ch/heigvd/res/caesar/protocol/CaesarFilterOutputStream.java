@@ -1,3 +1,8 @@
+/**
+ * @file CaesarFilterOutputStream.java
+ * @author Patrick Champion, Damien Rochat
+ */
+
 package ch.heigvd.res.caesar.protocol;
 
 import java.io.DataOutputStream;
