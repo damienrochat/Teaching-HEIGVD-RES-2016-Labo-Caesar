@@ -30,6 +30,6 @@ public class CaesarFilterOutputStream extends FilterOutputStream {
     str = Caesar.cipher(str, delta);
     super.write(str.getBytes());
 
-    LOG.log(Level.INFO, "Output crypted string : " + str);
+    LOG.log(Level.INFO, "Output crypted string, delta=" + delta + ": " + str);
   }
 }
