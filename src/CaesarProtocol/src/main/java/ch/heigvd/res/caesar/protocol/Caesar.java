@@ -5,6 +5,9 @@ package ch.heigvd.res.caesar.protocol;
  */
 public class Caesar {
     public static String cipher(String message, int delta) {
+        while(delta < 0)
+            delta += 26;
+        delta %= 26;
         String result = new String();
         for(int i = 0; i < message.length(); ++i) {
             int c = message.charAt(i);
