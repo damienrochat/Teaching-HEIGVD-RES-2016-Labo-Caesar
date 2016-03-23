@@ -2,6 +2,11 @@ package ch.heigvd.res.caesar.server;
 
 import ch.heigvd.res.caesar.client.*;
 import ch.heigvd.res.caesar.protocol.Protocol;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,7 +23,28 @@ public class CaesarServer {
   public static void main(String[] args) {
     System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tH:%1$tM:%1$tS::%1$tL] Server > %5$s%n");
     LOG.info("Caesar server starting...");
-    LOG.info("Protocol constant: " + Protocol.A_CONSTANT_SHARED_BY_CLIENT_AND_SERVER);
+    LOG.info("Protocol port: " + Protocol.PORT);
+
+    // create the listener
+    ServerSocket serverSocket;
+    try {
+      serverSocket = new ServerSocket(Protocol.PORT);
+    } catch(IOException ex) {
+      LOG.log(Level.SEVERE, ex.getMessage(), ex);
+      return;
+    }
+
+    // accept incoming client
+    while(true) {
+      LOG.info("Waiting for a new client");
+      try {
+        Socket client = serverSocket.accept();
+        LOG.info("A new client has arrived...");
+        new Thread(new ServantWorker(client)).start();
+      } catch(IOException ex) {
+        LOG.log(Level.SEVERE, ex.getMessage(), ex);
+      }
+    }
   }
   
 }
