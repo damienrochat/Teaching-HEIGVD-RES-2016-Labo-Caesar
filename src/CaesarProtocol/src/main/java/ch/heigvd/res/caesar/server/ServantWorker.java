@@ -46,12 +46,13 @@ public class ServantWorker implements Runnable {
 
             while(true) {
                 // wait for a message
-                String message = new String();
-                fromClient.read(message);
+                String message = fromClient.readCipher();
 
                 // quit on empty message
                 if(message.isEmpty())
                     break;
+
+                LOG.info("Message from " + client + ": " + message);
 
                 // echo the message
                 toClient.write(message);

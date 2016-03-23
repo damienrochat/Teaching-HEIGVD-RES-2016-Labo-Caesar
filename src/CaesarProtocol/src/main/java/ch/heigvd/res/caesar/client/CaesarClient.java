@@ -49,8 +49,7 @@ public class CaesarClient {
           break;
 
         // wait for the response
-        String response = new String();
-        fromServer.read(response);
+        String response = fromServer.readCipher();
         LOG.info("Server response: " + response);
       }
 
